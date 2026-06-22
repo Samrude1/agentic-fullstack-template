@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Agentic Fullstack Template (Anti-SaaS)
 
-## Getting Started
+Welcome to the **Agentic Fullstack Template**. This is not just another Next.js boilerplate. It is a highly opinionated, AI-first development environment designed for **Autonomous Engineering**. 
 
-First, run the development server:
+Instead of relying on expensive, closed-ecosystem SaaS products (like Clerk, Trigger.dev, or Liveblocks), this template provides a robust, self-hosted "Anti-SaaS" architecture (Next.js 15, Auth.js, AWS SQS/Lambda, FastAPI).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Most importantly, it includes an **AI Brain** (`.agents/` directory) that forces your AI coding assistant (like Antigravity IDE, Claude, or Cursor) to act like a disciplined Senior Engineer, rather than a junior developer writing spaghetti code.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 The Secret Sauce: The `.agents` Directory
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+AI agents are fast, but without discipline, they create technical debt. This template solves that with the `.agents` workspace—a set of rules, workflows, and cognitive skills that your AI assistant must read and follow.
 
-## Learn More
+### 📁 Structure
+- **`/context`**: The Ground Truth. Contains your architecture decisions, database schemas, and UI registry. The AI reads this before modifying *any* code.
+- **`/workflows`**: The Processes. Defines *what* the AI should do (e.g., API development, Database migrations, CI/CD setup).
+- **`/skills`**: The Cognitive Tools. Defines *how* the AI should think and execute. Includes commands like `/architect`, `/review`, and `/imprint`.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ The Engineering Loop
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You don't tell the AI to "just build a feature". You put it through the **Engineering Loop**.
 
-## Deploy on Vercel
+1. **Architect (`/architect`)**: The AI creates an Implementation Plan and surfaces architectural decisions. It waits for your approval.
+2. **Develop**: The AI writes the code according to the approved plan.
+3. **Review (`/review`)**: The AI audits its own code against the project's architecture and design system.
+4. **Imprint (`/imprint`)**: If a new UI component was built, the AI extracts the design tokens and saves them to `ui-registry.md` to guarantee perfect consistency in the future.
+5. **Remember (`/remember save`)**: At the end of the session, the AI saves the state to `memory.md` so it never loses context between days.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ How to Start Using This Template
+
+1. **Clone & Initialize**
+   ```bash
+   git clone https://github.com/yourusername/agentic-fullstack-template.git my-new-project
+   cd my-new-project
+   npm install
+   ```
+
+2. **Set Your Project Context**
+   Go to `.agents/context/architecture.md` and update it with the specific goals and tech stack of your new app.
+
+3. **Engage the AI**
+   Open your AI editor (Antigravity IDE, Cursor, etc.) and give your first prompt:
+   > *"Read `.agents/AGENTS.md`. I want to build a user authentication flow. Use `auth-security-workflow.md`."*
+
+4. **Follow the Loop**
+   Watch the AI run `/architect`, ask for your approval, build the feature, and run `/review`.
+
+---
+
+## 📦 Tech Stack (Anti-SaaS Philosophy)
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS v4 + Custom UI Registry
+- **Auth**: Auth.js / NextAuth (Self-hosted)
+- **Background Jobs**: AWS SQS + AWS Lambda
+- **AI Agent Backend**: FastAPI + LangGraph/CrewAI
+
+*Built for engineers who want to own their stack and lead their AI.*

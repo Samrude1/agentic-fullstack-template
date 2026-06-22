@@ -1,0 +1,26 @@
+📋 PROJEKTIN KONTEKSTI JA TAVOITE: "Anti-SaaS AI Architecture App"
+Visio: Tavoitteena on rakentaa visuaalisesti upea, JS Mastery -tyylinen "Full Stack Systems Architecture App", mutta täysin ilman kalliita ja suljettuja kolmannen osapuolen SaaS-palveluita (kuten Clerk, Trigger.dev, Liveblocks, jne.). Teemme "konepellin alusen" täysin itse hyödyntäen puhdasta avointa lähdekoodia ja omia AWS-pilvitaitoja. Tämä todistaa syvää Senior AI Platform Engineer -tason osaamista.
+
+Teknologiapino (Tech Stack):
+
+Frontend & UI: Next.js 15, TailwindCSS, React Flow (arkkitehtuurikaavioiden piirtämiseen selaimessa).
+Autentikaatio: Auth.js / NextAuth (korvaa Clerkin).
+Taustatyöt & Jonot: AWS SQS + Lambda (korvaa Trigger.devin).
+Reaaliaikaisuus: AWS API Gateway WebSockets tai Yjs (korvaa Liveblocksin).
+Tekoäly (AI Agent): Oma FastAPI-taustajärjestelmä, jossa pyörii LangGraph/CrewAI. Tekoäly analysoi käyttäjän piirtämiä arkkitehtuurikaavioita, antaa tietoturvasuosituksia ja optimointiehdotuksia.
+🧠 TEKOÄLYN TYÖNKULKU JA ARKKITEHTUURI (Blueprint-malli)
+Emme koodaa tätä projektia satunnaisesti rivi riviltä, vaan rakennamme ensin kurinalaisen AI-työnkulun (inspiraationa JSM Skills ja "Engineering Loop").
+
+Projektin juureen luodaan .agents -kansio, joka toimii projektin "aivoina". Kaikki koodigenerointi ja kehitys noudattaa näitä dokumentoituja sääntöjä:
+
+Kontekstitiedostot (Context): Esimerkiksi architecture.md, database-schema.md ja ui-registry.md. Näillä varmistetaan, että tekoäly tietää aina projektin säännöt, väriteemat ja arkkitehtuuriset päätökset ennen koodin kirjoittamista.
+Työnkulut (Workflows): Luodaan .agents/workflows/ -kansio, jossa on tarkat askeleet ominaisuuksien rakentamiseen (esim. new-feature-workflow.md, ui-component.md).
+Taidot (Skills): Noudatamme kurinalaista kehityssykliä:
+Architect: Suunnitellaan ja hyväksytetään arkkitehtuuri aina ennen koodausta.
+Review: Tarkistetaan tuotettu koodi järjestelmän sääntöjä vasten.
+Imprint: Tallennetaan kaikki uudet käyttöliittymäkomponentit UI-rekisteriin yhdenmukaisuuden takaamiseksi.
+🚀 ENSIMMÄINEN TEHTÄVÄ UUTEEN TYÖTILAAN:
+Alusta uusi Next.js 15 -projekti (Tailwindilla).
+Luo projektin juureen .agents -kansion rakenne (AGENTS.md, context/, workflows/, skills/).
+Kirjoita ensimmäiset luonnokset sääntötiedostoihin (erityisesti architecture.md ja ui-registry.md) yllä olevan teknologiapinon pohjalta.
+Kysy minulta (käyttäjältä) hyväksyntä arkkitehtuuridokumenteille ennen kuin kirjoitamme riviäkään varsinaista sovelluskoodia.
