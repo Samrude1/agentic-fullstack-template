@@ -67,8 +67,20 @@ Tekoäly analysoi tilanteen ja kertoo sinulle yhden kolmesta vaihtoehdosta:
 
 ## 6. Kuinka uusi projekti aloitetaan (tulevaisuudessa)
 
-Jos haluat joskus aloittaa täysin uuden projektin tällä samalla huippustandardilla:
-1. Alusta projektin runko (esim. `npx create-next-app`).
-2. Kopioi tämä olemassa oleva `.agents` -kansio kokonaisuudessaan uuden projektin juureen.
-3. Nollaa (tyhjennä) `context/` -kansion tiedostot (`architecture.md`, `database-schema.md` jne.) ja kirjoita niihin uuden projektin visio.
-4. Kerro tekoälylle ensimmäisessä viestissä: *"Lue läpi `.agents/AGENTS.md` ja aloitetaan uuden sovelluksen kehitys."*
+Jos haluat aloittaa täysin uuden projektin tällä samalla huippustandardilla, seuraa näitä neljää vaihetta (Quick-Start):
+
+**Vaihe 1: Ihmisen valmistelut**
+- Kloonaa tämä koko repo uuteen kansioon (esim. `OmaUusiSaaS`).
+- Kirjoita projektin juureen (esim. `docs/project-vision.md`) vapaamuotoinen kuvaus: ydinidea, kohderyhmä ja MVP-ominaisuudet.
+
+**Vaihe 2: Liikkeellelähtö (Tekoälyn herätys)**
+- Avaa uusi chat ja sano: *"Moikka! Luodaan uusi sovellus. Lue `docs/project-vision.md` ja päivitetään arkkitehtuuri sen pohjalta."*
+
+**Vaihe 3: Arkkitehtuurin lukitus (Tekoälyn työ)**
+- Tekoäly ajaa `/architect` -taidon ja luo sinulle Interaktiivisen Implementation Planin.
+- Suunnitelmassa ehdotetaan päivitykset `architecture.md` ja `database-schema.md` -tiedostoihin.
+- Paina "Approve", jolloin tekoäly päivittää tiedostot.
+
+**Vaihe 4: Varsinainen kehitys alkaa**
+- Komenna: *"Arkkitehtuuri on selvä. Rakenna ensimmäisenä kirjautuminen, käytä `new-feature-workflow.md`."*
+- Tästä eteenpäin rullataan tuttua `/architect` -> Koodaa -> `/review` -> `/imprint` -looppia!
