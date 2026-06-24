@@ -16,6 +16,7 @@ AI agents are fast, but without discipline, they create technical debt. This tem
 - **`/context`**: The Ground Truth. Inspired by JS Mastery's Spec-Driven Dev methodology. Contains your `project-overview.md`, `architecture.md`, `ui-context.md`, and `code-standards.md`. The AI reads this before modifying *any* code.
 - **`/workflows`**: The Processes. Defines *what* the AI should do (e.g., API development, Database migrations, CI/CD setup).
 - **`/skills`**: The Cognitive Tools. Defines *how* the AI should think and execute. Includes commands like `/architect`, `/review`, and `/imprint`.
+- **`/feature-specs`**: The History. A permanent, numbered archive (`01-feature.md`) of all approved implementation plans, providing a perfect spec-driven audit trail.
 
 ---
 
