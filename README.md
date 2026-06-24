@@ -13,7 +13,7 @@ Most importantly, it includes an **AI Brain** (`.agents/` directory) that forces
 AI agents are fast, but without discipline, they create technical debt. This template solves that with the `.agents` workspace—a set of rules, workflows, and cognitive skills that your AI assistant must read and follow.
 
 ### 📁 Structure
-- **`/context`**: The Ground Truth. Contains your architecture decisions, database schemas, and UI registry. The AI reads this before modifying *any* code.
+- **`/context`**: The Ground Truth. Inspired by JS Mastery's Spec-Driven Dev methodology. Contains your `project-overview.md`, `architecture.md`, `ui-context.md`, and `code-standards.md`. The AI reads this before modifying *any* code.
 - **`/workflows`**: The Processes. Defines *what* the AI should do (e.g., API development, Database migrations, CI/CD setup).
 - **`/skills`**: The Cognitive Tools. Defines *how* the AI should think and execute. Includes commands like `/architect`, `/review`, and `/imprint`.
 
@@ -41,11 +41,11 @@ You don't tell the AI to "just build a feature". You put it through the **Engine
    ```
 
 2. **Set Your Project Context**
-   Go to `.agents/context/architecture.md` and update it with the specific goals and tech stack of your new app.
+   Go to the `.agents/context/` directory and fill in the 4 generic template files (`project-overview.md`, `architecture.md`, etc.) with the specific goals and tech stack of your new app.
 
 3. **Engage the AI**
-   Open your AI editor (Antigravity IDE, Cursor, etc.) and give your first prompt:
-   > *"Read `.agents/AGENTS.md`. I want to build a user authentication flow. Use `auth-security-workflow.md`."*
+   Open your AI editor (Antigravity IDE, Cursor, etc.). The included `CLAUDE.md` file will automatically instruct your AI to read the context files. Give your first prompt:
+   > *"I want to build a user authentication flow. Follow the `auth-security-workflow.md`."*
 
 4. **Follow the Loop**
    Watch the AI run `/architect`, ask for your approval, build the feature, and run `/review`.
