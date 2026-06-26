@@ -63,9 +63,3 @@ You don't tell the AI to "just build a feature". You put it through the **Engine
 *Built for engineers who want to own their stack and lead their AI.*
 
 ---
-
-## 🇫🇮 Documentation / Sidosryhmä-dokumentaatio (FI)
-For local stakeholders, investors, and team presentations, the architectural vision and workflow guides are provided in Finnish in the `docs/` folder:
-
-- [Tulevaisuuden Visio & Arkkitehtuuri (FI)](docs/future_project-vision.md)
-- [Tekoälyavusteisen Ohjelmistokehityksen Käyttöopas (FI)](docs/kayttoopas.md)
