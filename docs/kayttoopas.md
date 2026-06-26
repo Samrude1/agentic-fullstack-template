@@ -1,15 +1,16 @@
 # Tekoälyavusteisen Ohjelmistokehityksen Käyttöopas
 
-Tämä dokumentti on tarkoitettu sinulle (ihmiselle), jotta muistat miten tämä `.agents`-hakemistoon pohjautuva tekoälyavusteinen "Engineering Loop" toimii. Tämän järjestelmän tarkoitus on tuottaa huippuluokan Fullstack-koodia täysin hallitusti ja kurinalaisesti, estäen tekoälyn "hallusinointikierteet" ja koodipohjan rappeutumisen (spagettikoodi).
+Tämä dokumentti on tarkoitettu sinulle (ihmiselle), jotta muistat miten tämä `.agents`-hakemistoon pohjautuva tekoälyavusteinen "Engineering Loop" toimii. Tämän järjestelmän tarkoitus on tuottaa Fullstack-koodia täysin hallitusti ja kurinalaisesti, estäen tekoälyn "hallusinointikierteet" ja koodipohjan rappeutumisen (spagettikoodi).
 
 ---
 
 ## 1. Järjestelmän Ydin (Miten tämä toimii?)
 
-Kaikki äly asuu projektin juuren `.agents/` -kansiossa. Tekoäly (Antigravity IDE / Gemini) on aina tietoinen tästä kansiosta.
+Kaikki äly asuu projektin juuren `.agents/` -kansiossa. Koska järjestelmä perustuu puhtaasti Markdown-tiedostoihin, se on täysin siirrettävissä (Platform Agnostic). Voit käyttää sitä missä tahansa modernissa tekoäly-IDE:ssä (esim. Antigravity IDE, Cursor, Windsurf tai GitHub Copilot Workspace).
+
 - **`context/`**: Totuuden lähde. Täällä on arkkitehtuuri, tietokantasäännöt ja UI-rekisteri. Tekoäly lukee nämä aina ennen koodausta.
 - **`workflows/`**: *Mitä* tehdään. Nämä ovat työnkulkuja (esim. uuden API-reitin tai UI-komponentin tekeminen).
-- **`skills/`**: *Miten* tehdään. Nämä ovat tekoälyn kognitiivisia taitoja (esim. `/architect`, `/review`, `/imprint`).
+- **`skills/`**: *Miten* tehdään. Nämä ovat tekoälyn kognitiivisia taitoja (esim. `/architect`, `/review`, `/imprint`). *Huom: Antigravity IDE tukee slash-komentoja näille suoraan, muissa työkaluissa voit pyytää tekoälyä lukemaan vastaavan SKILL.md -tiedoston.*
 
 ---
 
@@ -65,9 +66,9 @@ Tekoäly analysoi tilanteen ja kertoo sinulle yhden kolmesta vaihtoehdosta:
 
 ---
 
-## 6. Kuinka uusi projekti aloitetaan (tulevaisuudessa)
+## 6. Kuinka uusi projekti aloitetaan
 
-Jos haluat aloittaa täysin uuden projektin tällä samalla huippustandardilla, seuraa näitä neljää vaihetta (Quick-Start):
+Jos haluat aloittaa täysin uuden projektin tällä samalla standardilla, seuraa näitä neljää vaihetta (Quick-Start):
 
 **Vaihe 1: Ihmisen valmistelut**
 - Kloonaa tämä koko repo uuteen kansioon (esim. `OmaUusiSaaS`).
