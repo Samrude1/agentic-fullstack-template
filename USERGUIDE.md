@@ -71,17 +71,18 @@ Tekoäly analysoi tilanteen ja kertoo sinulle yhden kolmesta vaihtoehdosta:
 Jos haluat aloittaa täysin uuden projektin tällä samalla standardilla, seuraa näitä neljää vaihetta (Quick-Start):
 
 **Vaihe 1: Ihmisen valmistelut**
-- Kloonaa tämä koko repo uuteen kansioon (esim. `OmaUusiSaaS`).
-- Kirjoita projektin juureen (esim. `docs/project-vision.md`) vapaamuotoinen kuvaus: ydinidea, kohderyhmä ja MVP-ominaisuudet.
+- Kloonaa tämä koko repo uuteen kansioon (ilman `.git` tai `node_modules` -kansioita).
+- Täytä valmis `docs/future-project-vision.md` -templaatti projektisi tiedoilla: ydinidea, kohderyhmä ja MVP-ominaisuudet.
 
 **Vaihe 2: Liikkeellelähtö (Tekoälyn herätys)**
-- Avaa uusi chat ja sano: *"Moikka! Luodaan uusi sovellus. Lue `docs/project-vision.md` ja päivitetään arkkitehtuuri sen pohjalta."*
+- Anna tekoälylle heti kättelyssä visio ja työnkulku. Avaa uusi chat ja sano: 
+  > *"Moikka! Luodaan uusi sovellus. Lue `docs/future-project-vision.md` ja aletaan hommiin. Käytä `.agents/workflows/new-feature-workflow.md` työnkulkua ensimmäisen ominaisuuden rakentamiseen."*
 
-**Vaihe 3: Arkkitehtuurin lukitus (Tekoälyn työ)**
+**Vaihe 3: Arkkitehtuurin lukitus ja koodaus (Tekoälyn työ)**
 - Tekoäly ajaa `/architect` -taidon ja luo sinulle Interaktiivisen Implementation Planin.
-- Suunnitelmassa ehdotetaan päivitykset `architecture.md` ja `database-schema.md` -tiedostoihin.
-- Paina "Approve", jolloin tekoäly päivittää tiedostot.
+- Suunnitelmassa ehdotetaan päivitykset `architecture.md` ja `database-schema.md` -tiedostoihin, ja kerrotaan miten ensimmäinen ominaisuus toteutetaan.
+- Paina "Approve", jolloin tekoäly päivittää tiedostot ja aloittaa varsinaisen koodauksen.
 
-**Vaihe 4: Varsinainen kehitys alkaa**
-- Komenna: *"Arkkitehtuuri on selvä. Rakenna ensimmäisenä kirjautuminen, käytä `new-feature-workflow.md`."*
-- Tästä eteenpäin rullataan tuttua `/architect` -> Koodaa -> `/review` -> `/imprint` -looppia!
+**Vaihe 4: Rutiinin jatkaminen**
+- Tästä eteenpäin rullataan tuttua looppia aina kun haluat uuden ominaisuuden:
+  > *"Rakenna seuraavaksi X. Noudata `new-feature-workflow.md`."*

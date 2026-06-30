@@ -45,8 +45,8 @@ You don't tell the AI to "just build a feature". You put it through the **Engine
    Go to the `.agents/context/` directory and fill in the 4 generic template files (`project-overview.md`, `architecture.md`, etc.) with the specific goals and tech stack of your new app.
 
 3. **Engage the AI**
-   Open your AI editor (Antigravity IDE, Cursor, etc.). The included `CLAUDE.md` file will automatically instruct your AI to read the context files. Give your first prompt:
-   > *"I want to build a user authentication flow. Follow the `auth-security-workflow.md`."*
+   Open your AI editor (Antigravity IDE, Cursor, etc.). Give your first prompt to kick off the project by handing it your vision and the workflow:
+   > *"Read `docs/future-project-vision.md` to understand the goal. Let's start building it. Follow the `.agents/workflows/new-feature-workflow.md`."*
 
 4. **Follow the Loop**
    Watch the AI run `/architect`, ask for your approval, build the feature, and run `/review`.
