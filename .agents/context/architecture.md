@@ -6,7 +6,7 @@
 | --------- | --------------------------- | ------ |
 | Framework | [e.g. Next.js + TypeScript] | [Role] |
 | UI        | [e.g. Tailwind + shadcn/ui] | [Role] |
-| Auth      | [e.g. Clerk]                | [Role] |
+| Auth      | [e.g. Auth.js / NextAuth]   | [Role] |
 | Database  | [e.g. Prisma + PostgreSQL]  | [Role] |
 | [Layer]   | [Technology]                | [Role] |
 
@@ -27,7 +27,7 @@
 ## Auth and Access Model
 
 - [How authentication works — e.g. Every user signs in
-  via Clerk]
+  via self-hosted Auth.js credentials]
 - [How ownership works — e.g. Every project has a single
   owner]
 - [How access control works — e.g. Only the owner or a

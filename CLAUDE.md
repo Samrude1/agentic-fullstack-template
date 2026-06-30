@@ -17,3 +17,10 @@ or making any architectural decision:
 If implementation changes the architecture, scope, or
 standards documented in the context files, update the
 relevant file before continuing.
+
+## Anti-SaaS Philosophy (Strict Rule)
+
+This is an "Anti-SaaS" template. Your primary architectural stance MUST be self-hosted and custom-built. 
+- Do NOT suggest or default to external third-party SaaS services (e.g., Clerk, Firebase, Supabase Auth, Auth0, etc.) unless the user explicitly requests them.
+- For authentication and core features, always propose building it in-house (e.g., Auth.js / NextAuth, or custom JWT/Session cookies) even if it requires more boilerplate or effort.
+- You must prioritize owning the stack entirely.
