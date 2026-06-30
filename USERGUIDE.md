@@ -1,88 +1,130 @@
-# Tekoälyavusteisen Ohjelmistokehityksen Käyttöopas
+# Tekoälyavusteisen Ohjelmistokehityksen Käyttöopas (Comprehensive User Guide)
 
-Tämä dokumentti on tarkoitettu sinulle (ihmiselle), jotta muistat miten tämä `.agents`-hakemistoon pohjautuva tekoälyavusteinen "Engineering Loop" toimii. Tämän järjestelmän tarkoitus on tuottaa Fullstack-koodia täysin hallitusti ja kurinalaisesti, estäen tekoälyn "hallusinointikierteet" ja koodipohjan rappeutumisen (spagettikoodi).
-
----
-
-## 1. Järjestelmän Ydin (Miten tämä toimii?)
-
-Kaikki äly asuu projektin juuren `.agents/` -kansiossa. Koska järjestelmä perustuu puhtaasti Markdown-tiedostoihin, se on täysin siirrettävissä (Platform Agnostic). Voit käyttää sitä missä tahansa modernissa tekoäly-IDE:ssä (esim. Antigravity IDE, Cursor, Windsurf tai GitHub Copilot Workspace).
-
-- **`context/`**: Totuuden lähde. Täällä on arkkitehtuuri, tietokantasäännöt ja UI-rekisteri. Tekoäly lukee nämä aina ennen koodausta.
-- **`workflows/`**: *Mitä* tehdään. Nämä ovat työnkulkuja (esim. uuden API-reitin tai UI-komponentin tekeminen).
-- **`skills/`**: *Miten* tehdään. Nämä ovat tekoälyn kognitiivisia taitoja (esim. `/architect`, `/review`, `/imprint`). *Huom: Antigravity IDE tukee slash-komentoja näille suoraan, muissa työkaluissa voit pyytää tekoälyä lukemaan vastaavan SKILL.md -tiedoston.*
+Tämä on kattava ammattilaisen käyttöopas (Engineering Manual) Agentic Fullstack -templatelle. Tämän oppaan tarkoitus on avata `.agents`-hakemiston todellinen voima, purkaa sen osat ja antaa selkeät, toistettavat toimintaohjeet projektin jokaisessa elinkaaren vaiheessa. Tällä mallilla estetään tekoälyn hallusinointi ja varmistetaan, että koodipohja pysyy skaalautuvana ja kurinalaisena.
 
 ---
 
-## 2. Kuinka palata tauolta (Session palauttaminen)
+## 1. Järjestelmän Ydin: `.agents` -hakemiston Anatomia
 
-Koska tekoälyllä ei ole muistia sessioiden välillä, meidän on ladattava konteksti aina uuden session alussa.
+Kaikki äly ja säännöstö asuu projektin juuren `.agents/` -kansiossa. Tämä on "tekoälyn aivot". Se pakottaa tekoälyn toimimaan kokeneen seniori-insinöörin tavoin. Hakemisto on jaettu neljään kriittiseen osaan:
 
-**Kun aloitat uuden chatin (esim. seuraavana päivänä):**
-1. Sano tekoälylle: *"Aja `/remember restore`."*
-2. Tekoäly lukee automaattisesti projektin juuressa olevan `memory.md`-tiedoston sekä koko `.agents/context/` -kansion.
-3. Tekoäly kertoo sinulle, mihin viimeksi jäätiin ja varmistaa, voidaanko jatkaa siitä.
-
----
-
-## 3. Kuinka uusi ominaisuus lisätään (Päivittäinen työnkulku)
-
-Älä koskaan pyydä tekoälyä vain "koodaamaan jotain". Käytä aina työnkulkuja. 
-
-**Esimerkkikomento tekoälylle:**
-> *"Haluan lisätä sovellukseen kirjautumissivun. Noudata `new-feature-workflow.md` -työnkulkua ja ota huomioon `ui-registry.md`."*
-
-**Tämän jälkeen tapahtuu automaattinen "Engineering Loop":**
-1. **Suunnittelu (`/architect`)**: Tekoäly tutkii kontekstin ja luo sinulle ruudulle interaktiivisen *Implementation Plan* -dokumentin. Ette kirjoita vielä riviäkään koodia.
-2. **Hyväksyntä**: Sinä (ihminen) luet suunnitelman. Jos se on hyvä, painat "Approve". 
-3. **Koodaus**: Vasta hyväksynnän jälkeen tekoäly kirjoittaa koodin.
-4. **Katselmointi (`/review`)**: Kun koodi on valmis, tekoäly tarkistaa sen sääntöjä vasten ja esittää sinulle *Walkthrough* -raportin (esim. varoittaen tietoturvapuutteista).
-5. **Tallennus (`/imprint` tai kontekstin päivitys)**: Jos tehtiin UI-komponentteja, tekoäly päivittää `ui-registry.md` -tiedoston uusilla väreillä tai layouteilla tulevaisuutta varten.
+1. **`context/` (Totuuden Lähde)**: Sisältää dokumentit, jotka määrittelevät *mitä* ollaan rakentamassa ja *millä säännöillä*. Tekoälyn tulee aina konsultoida näitä ennen koodausta.
+2. **`workflows/` (Prosessit)**: Sisältää täsmälliset askelmerkit siihen, *missä järjestyksessä* erilaiset tehtävät (API, UI, Tietokanta) suoritetaan.
+3. **`skills/` (Kognitiiviset Taidot)**: Sisältää tekoälyn "työkalut" ja kyvyt, joita se voi kutsua koodauksen aikana tai sen jälkeen (esim. suunnittelu, koodin arviointi, tilan tallennus).
+4. **`feature-specs/` (Historiallinen Arkisto)**: Kun tekoäly laatii suunnitelman ja ihminen sen hyväksyy, se tallennetaan tänne numeroituna dokumenttina (esim. `01-feature.md`). Tämä on projektin muuttumaton spec-driven -audit trail.
 
 ---
 
-## 4. Kuinka lopettaa työpäivä (Session tallennus)
+## 2. Projektin Elinkaari: Aloitus, Tallennus ja Palautus
 
-Kun olet valmis lopettamaan koodauksen tältä erää, konteksti pitää säästää seuraavaa kertaa varten.
+### Uuden projektin aloitus (Quick-Start)
+1. **Pohjatyö**: Kloonaa repo. Täytä `docs/future-project-vision.md` ja `.agents/context/` -kansion tiedostot (arkkitehtuuri, tavoitteet) vastaamaan *sinun* sovellustasi.
+2. **Tekoälyn herätys**: Avaa tekoäly-IDE:si chat ja anna ensimmäinen komento:
+   > *"Moikka! Luodaan uusi sovellus. Lue `docs/future-project-vision.md` ja aletaan hommiin. Käytä `.agents/workflows/new-feature-workflow.md` työnkulkua ensimmäisen MVP-ominaisuuden rakentamiseen."*
+3. **Arkkitehtuurin lukitus**: Tekoäly ajaa automaattisesti `/architect`-taidon. Se tekee Implementation Planin ja päivittää arkkitehtuuridokumentit. **Sinä hyväksyt.**
+4. **Koodaus**: Hyväksynnän jälkeen tekoäly aloittaa konkreettisen koodauksen.
 
-**Ennen kuin suljet ohjelman:**
-1. Sano tekoälylle: *"Aja `/remember save`."*
-2. Tekoäly tekee yhteenvedon siitä, mitä sessiossa tehtiin, mitkä ongelmat ratkaistiin ja mitä tehdään seuraavaksi.
-3. Tämä tieto tallennetaan `memory.md` -tiedostoon projektin juureen.
+### Session tallentaminen (Työpäivän päätös)
+Tekoälyllä ei ole omaa muistia eri sessioiden (chat-ikkunoiden) välillä. Ennen kuin suljet ohjelman, varmista jatkuvuus:
+> *"Olen valmis tältä päivältä. Aja `/remember save`."*
+Tekoäly kerää yhteenvedon tehdyistä asioista, ratkaisuista ja avoimista ongelmista, ja tallentaa ne `memory.md` -tiedostoon projektin juureen.
 
----
-
-## 5. Mitä tehdä jos kaikki menee pieleen? (Recovery)
-
-Tekoäly tekee virheitä. Jos huomaat, että koodi on rikki ja olette yrittäneet korjata sitä tuloksetta yli kaksi kertaa, **pysähdy**.
-
-**Komenna tekoälyä:**
-> *"Ollaan jumissa. Aja `/recover`."*
-
-Tekoäly analysoi tilanteen ja kertoo sinulle yhden kolmesta vaihtoehdosta:
-- **Targeted Fix**: Kyseessä on vain pieni bugi, joka voidaan korjata.
-- **Hard Reset**: Konteksti on liian sotkussa. Tekoäly pyytää sinua aloittamaan uuden chatin (session).
-- **Rethink**: Arkkitehtuurissa on perustavanlaatuinen valuvika, ja tekoäly ehdottaa ominaisuuden suunnittelua kokonaan uudestaan.
+### Session palauttaminen (Työpäivän aloitus)
+Kun palaat koneelle seuraavana päivänä tai aloitat uuden chatin:
+> *"Jatketaan hommia. Aja `/remember restore`."*
+Tekoäly lukee `memory.md` -tiedoston ja `.agents/context/` -hakemiston, ja on välittömästi perillä siitä, mitä oltiin tekemässä.
 
 ---
 
-## 6. Kuinka uusi projekti aloitetaan
+## 3. Työnkulut (`.agents/workflows/`)
 
-Jos haluat aloittaa täysin uuden projektin tällä samalla standardilla, seuraa näitä neljää vaihetta (Quick-Start):
+Workflows-kansio on projektin sydän. Älä koskaan pyydä tekoälyä vain "tekemään jotain". Käske sitä aina noudattamaan tiettyä työnkulkua. Jokainen työnkulku määrittelee vaiheet suunnittelusta (Architect) toteutukseen ja katselmointiin (Review).
 
-**Vaihe 1: Ihmisen valmistelut**
-- Kloonaa tämä koko repo uuteen kansioon (ilman `.git` tai `node_modules` -kansioita).
-- Täytä valmis `docs/future-project-vision.md` -templaatti projektisi tiedoilla: ydinidea, kohderyhmä ja MVP-ominaisuudet.
+Tässä on katsaus kaikkiin saatavilla oleviin työnkulkuihin ja siihen, milloin niitä käytetään:
 
-**Vaihe 2: Liikkeellelähtö (Tekoälyn herätys)**
-- Anna tekoälylle heti kättelyssä visio ja työnkulku. Avaa uusi chat ja sano: 
-  > *"Moikka! Luodaan uusi sovellus. Lue `docs/future-project-vision.md` ja aletaan hommiin. Käytä `.agents/workflows/new-feature-workflow.md` työnkulkua ensimmäisen ominaisuuden rakentamiseen."*
+### `new-feature-workflow.md`
+- **Mihin käytetään**: Kun rakennetaan kokonaan uusi, iso ominaisuus (esim. Käyttäjäprofiilin luonti, Ostoskori).
+- **Mitä se tekee**: Tekoäly pakotetaan luomaan iso laaja Implementation Plan, päivittämään mahdolliset tietokantamallit ja rakentamaan ominaisuus end-to-end. Käyttää alityönkulkuna usein UI- ja API-työnkulkuja.
 
-**Vaihe 3: Arkkitehtuurin lukitus ja koodaus (Tekoälyn työ)**
-- Tekoäly ajaa `/architect` -taidon ja luo sinulle Interaktiivisen Implementation Planin.
-- Suunnitelmassa ehdotetaan päivitykset `architecture.md` ja `database-schema.md` -tiedostoihin, ja kerrotaan miten ensimmäinen ominaisuus toteutetaan.
-- Paina "Approve", jolloin tekoäly päivittää tiedostot ja aloittaa varsinaisen koodauksen.
+### `ui-component-workflow.md`
+- **Mihin käytetään**: Kun tehdään puhtaasti frontend-komponentti (esim. uusi nappi, modaali, lomake).
+- **Mitä se tekee**: Varmistaa, että tekoäly lukee `ui-context.md` -tiedoston, käyttää oikeita Tailwind-luokkia, eikä keksi uusia design-sääntöjä. Pakottaa myös `/imprint` -taidon käytön, jotta uudet design-valinnat tallentuvat rekisteriin.
 
-**Vaihe 4: Rutiinin jatkaminen**
-- Tästä eteenpäin rullataan tuttua looppia aina kun haluat uuden ominaisuuden:
-  > *"Rakenna seuraavaksi X. Noudata `new-feature-workflow.md`."*
+### `api-development-workflow.md`
+- **Mihin käytetään**: Uusien backend API-reittien rakentamiseen (Next.js Route Handlers tai FastAPI backend).
+- **Mitä se tekee**: Varmistaa validointien (Zod), virheenkäsittelyiden ja tyypitysten oikeellisuuden ennen kuin API tuodaan frontendin käyttöön.
+
+### `database-workflow.md`
+- **Mihin käytetään**: Tietokantamuutoksiin (esim. Drizzle ORM, Prisma). Migraatioiden luonti, skeeman päivitys.
+- **Mitä se tekee**: Estää tekoälyä rikkomasta tuotantokantaa. Se vaatii muutosten suunnittelun, `architecture.md` -tiedoston päivityksen ja oikeaoppisen migraatiotiedoston luomisen.
+
+### `auth-security-workflow.md`
+- **Mihin käytetään**: Autentikaation (Auth.js) säätöön, sessioiden hallintaan ja reittien suojaamiseen.
+- **Mitä se tekee**: Varmistaa, että salasanat ja tokenit käsitellään oikein, Middleware suojaa oikeat reitit ja roolit (Role-Based Access) on implementoitu turvallisesti.
+
+### `background-tasks-workflow.md`
+- **Mihin käytetään**: Kun tarvitaan asynkronista suoritusta (AWS SQS, Lambdat, cron-työt).
+- **Mitä se tekee**: Erottelee raskaan logiikan irti API-vastauksesta. Suunnittelee jonotuksen ja varmistaa, että tekoäly käyttää "Anti-SaaS" -infrastruktuuriamme (esim. AWS SQS) kolmannen osapuolen maksullisen palvelun sijaan.
+
+### `ai-agent-workflow.md`
+- **Mihin käytetään**: Projektin omien, ohjelmiston sisäisten tekoälyagenttien (FastAPI + LangGraph/CrewAI) kehittämiseen.
+- **Mitä se tekee**: Keskittyy LLM-prompteihin, tekoälyn putkiin (pipelines) ja työkalujen integroimiseen Python-backendissa.
+
+### `ci-cd-workflow.md`
+- **Mihin käytetään**: Julkaisuputkien (GitHub Actions, Vercel) ja automaattisen testauksen konfigurointiin.
+- **Mitä se tekee**: Kirjoittaa asennusskriptit ja testauksen säännöt, jotta koodi on tuotantovalmista ja oikein testattu.
+
+### `security-audit-workflow.md`
+- **Mihin käytetään**: Kun haluat tekoälyn etsivän aktiivisesti haavoittuvuuksia olemassa olevasta koodipohjasta.
+- **Mitä se tekee**: Ajaa kolmivaiheisen auditoinnin (staattinen analyysi, infrastruktuuri, ja raportointi) etsien tietoturvapuutteita, turvattomia riippuvuuksia tai kovakoodattuja salaisuuksia.
+
+> **Esimerkki työnkulun pyytämisestä**:
+> *"Tee uusi API-reitti käyttäjän datan hakemiseen. Käytä `api-development-workflow.md`."*
+
+---
+
+## 4. Taidot (`.agents/skills/`)
+
+Skills-kansio eroaa Workflows-kansiosta siinä, että taidot ovat spesifejä *työkaluja* tai *kyvykkyyksiä*, joita tekoäly käyttää suorittaakseen workflows-vaiheita. Ne sisältävät `SKILL.md` tiedostoja, jotka opettavat tekoälylle, miten sen kuuluu reagoida eri tilanteisiin.
+
+Voit joko pyytää tekoälyä ajamaan taidon ("Aja `/architect`"), tai tekoäly kutsuu niitä itse työnkulkujen vaatimana.
+
+### `/architect` (Suunnittelutaito)
+- **Mitä se tekee**: Pakottaa tekoälyn miettimään ennen koodaamista. Pysäyttää hätiköinnin. Tekoäly luo `implementation_plan.md` -tiedoston ja odottaa ihmisen hyväksyntää.
+- **Miksi tärkeä**: Ilman tätä tekoäly kirjoittaa spagettikoodia ja rikkoo arkkitehtuuria. Tämä on projektin hallinnan tärkein työkalu.
+
+### `/imprint` (UI:n lukitustaito)
+- **Mitä se tekee**: Analysoi juuri koodatun UI-komponentin ja poimii siitä talteen design-säännöt (värit, paddingit, varjot). Tallentaa nämä säännöt `ui-context.md` tai `ui-registry.md` -tiedostoon.
+- **Miksi tärkeä**: Varmistaa, että sovellus näyttää yhtenäiseltä. Seuraava komponentti, jonka tekoäly tekee, näyttää samalta kuin edellinen.
+
+### `/review` (Katselmointitaito)
+- **Mitä se tekee**: Kun ominaisuus on koodattu, tekoäly ottaa "Senior Engineer" -hatun päähän ja arvostelee oman koodinsa. Se tekee Walkthrough-dokumentin, ja huomauttaa mahdollisista linttaus- ja arkkitehtuurivirheistä.
+- **Miksi tärkeä**: Laadunvarmistus. Estää huonojen valintojen valumisen tuotantoon.
+
+### `/remember` (Muistintallennustaito)
+- **Mitä se tekee**: Tukee `save` ja `restore` argumentteja (kuten luvussa 2 kuvattu). Lukee tai kirjoittaa projektin sen hetkisen tilan `memory.md` -tiedostoon.
+- **Miksi tärkeä**: Helpottaa työn jatkamista seuraavana päivänä ja uudessa chatissa.
+
+### `/recover` (Vianpalautustaito)
+- **Mitä se tekee**: Kun asiat menevät todella solmuun (tekoäly korjaa samaa virhettä kolmatta kertaa turhaan), ihminen voi komentaa `/recover`. Tekoäly pysähtyy, analysoi tilanteen objektiivisesti ja antaa diagnoosin (esim. "Targeted Fix", "Hard Reset" tai "Rethink").
+- **Miksi tärkeä**: Katkaisee tekoälyn hallusinointikierteen ja ohjaa takaisin oikealle polulle.
+
+---
+
+## 5. Konteksti (`.agents/context/`)
+
+Tämä on ohjelmistosi "perustuslaki". Koko tekoälyavusteinen kehitys rakentuu näiden dokumenttien varaan. Pidä huoli, että nämä ovat aina ajan tasalla.
+- `architecture.md`: Miten eri osat juttelevat toisilleen. Tietokannat, API:t, taustatyöt.
+- `code-standards.md`: Linttaus-säännöt, nimeämiskäytännöt, tiedostorakenteet.
+- `project-overview.md`: Miksi tämä sovellus on olemassa ja kenelle sitä tehdään.
+- `ui-context.md` (tai registry): Tyylit, väriteemat ja komponenttien visuaaliset säännöt.
+
+---
+
+## Yhteenveto
+
+**Agentic Fullstack -templatella kehittäminen ei ole pelkkää promptailua. Se on ohjelmistotuotannon johtamista.** Sinä olet Tech Lead ja tuoteomistaja, tekoäly on tiimisi. 
+1. Määrittele suunta (`context/`).
+2. Valitse työnkulku (`workflows/`).
+3. Pakota tekoäly suunnittelemaan ja käyttämään taitojaan (`skills/`).
+4. Hyväksy, anna koodata, ja tallenna tila (`/remember`).
