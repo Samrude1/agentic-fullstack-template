@@ -14,8 +14,8 @@ AI agents are fast, but without discipline, they create technical debt. This tem
 
 ### 📁 Structure
 - **`/context`**: The Ground Truth. Inspired by JS Mastery's Spec-Driven Dev methodology. Contains your `project-overview.md`, `architecture.md`, `database-schema.md`, `ui-registry.md`, and `env-context.md`. The AI reads this before modifying *any* code.
-- **`/workflows`**: The Processes. Defines *what* the AI should do (e.g., API development, Database migrations, CI/CD setup).
-- **`/skills`**: The Cognitive Tools. Defines *how* the AI should think and execute. Includes commands like `/init`, `/architect`, `/optimize`, `/test`, and `/review`.
+- **`/workflows`**: The Processes. Defines *what* the AI should do (e.g., API development, Database migrations, CI/CD setup). Built on a strict "Gold-Standard" YAML-frontmatter template for reliable AI execution.
+- **`/skills`**: The Cognitive Tools. Defines *how* the AI should think and execute. Includes highly-structured, S-tier behavioral prompts like `/init`, `/architect`, `/optimize`, `/recover`, `/remember`, `/test`, and `/review`.
 - **`/feature-specs`**: The History. A permanent, numbered archive (`01-feature.md`) of all approved implementation plans, providing a perfect spec-driven audit trail.
 
 ---
