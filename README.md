@@ -15,10 +15,10 @@ Building fullstack applications with AI coding assistants can quickly lead to co
 
 This repository solves these challenges with:
 - **Framework-Agnostic**: Works with Next.js, Vite+React, SvelteKit, Astro, Express, or any modern stack.
-- **Skill-First Cognitive System**: Automated AI behaviors via discrete slash commands (`/init`, `/test`, `/debug`, `/save`, `/resume`).
-- **Single Source of Truth**: All architecture, product requirements, styling tokens, and bug logs live in `.agents/blueprint/`.
+- **Skill-First Cognitive System**: Automated AI behaviors via discrete slash commands (`/init`, `/api`, `/db`, `/ai`, `/security`, `/test`, `/save`).
+- **Single Source of Truth**: All architecture, product requirements, styling tokens, security audits, and bug logs live in `.agents/blueprint/`.
 - **Long-Term Memory**: Seamlessly switch chats and save tokens without losing project context or architectural state.
-- **Built-In Quality Gates**: Security audits (OWASP), accessibility checks (WCAG), performance monitoring (Core Web Vitals), and style drift detection.
+- **Production Domain Standards**: Dedicated, battle-tested skills for backend APIs (Zod validation), database schemas & migrations, AI/LLM streaming, and OWASP security scans.
 
 ---
 
@@ -28,11 +28,11 @@ When developing with an AI assistant, maintain a disciplined, high-velocity loop
 
 ```mermaid
 graph TD
-    A["🌅 1. /resume<br/>(Restore memory & pick key files)"] --> B["🔨 2. Feature Development<br/>(Atomic, focused implementation)"]
+    A["🌅 1. /resume<br/>(Restore memory & pick key files)"] --> B["🔨 2. Feature Building<br/>(/ui, /api, /db, /ai)"]
     B --> C["🧪 3. /test<br/>(Automated browser & API verification)"]
     C -- Bug or failure --> D["🐛 4. /debug<br/>(Root cause & KNOWN_BUGS logging)"]
     D --> B
-    C -- Clean pass --> E["🔍 5. /review<br/>(Security, a11y, performance & style audit)"]
+    C -- Clean pass --> E["🔍 5. /review & /security<br/>(A11y, perf, OWASP & style audit)"]
     E --> F["🌆 6. /save<br/>(Record session state & dev log)"]
     F --> G["🚀 7. /build<br/>(Deploy to Vercel, Netlify, Docker, etc.)"]
 ```
@@ -43,6 +43,7 @@ graph TD
 
 Control your AI assistant with crisp, standardized commands:
 
+### 🔄 Lifecycle & Memory Commands
 | Command | Skill | Description |
 | :--- | :--- | :--- |
 | `/resume` | `app-memory` | **Start of Day**: Restores memory from `SESSION_STATE.md` and loads only 2–4 key files to minimize token usage. |
@@ -50,9 +51,18 @@ Control your AI assistant with crisp, standardized commands:
 | `/onboard` | `app-onboard` | **Legacy Audit**: Dissects existing codebases, audits architecture/dependencies, and generates a blueprint structure. |
 | `/test` | `app-test` | **Automated Testing**: Runs the app in a browser subagent, checking page load, navigation, forms, console errors, and responsive layout. |
 | `/debug` | `app-debug` | **Diagnostics**: Locates root causes (hydration errors, API failures, auth issues, CORS, build errors) and updates `KNOWN_BUGS.md`. |
-| `/review` | `app-review` | **Quality Assurance**: Audits for security vulnerabilities, accessibility compliance, performance bottlenecks, and style drift. |
+| `/review` | `app-review` | **Quality Assurance**: Audits for code quality, accessibility compliance, performance bottlenecks, and style drift. |
 | `/save` | `app-memory` | **End of Day**: Compiles session achievements, logs next steps in `SESSION_STATE.md` and commits to `DEV_LOG.md`. |
 | `/build` | `app-deploy` | **Deployment**: Prepares production builds and packages for Vercel, Netlify, Docker, or GitHub Pages. |
+
+### 🛠️ Specialized Domain Commands
+| Command | Skill | Description |
+| :--- | :--- | :--- |
+| `/ui` | `app-ui` | **Component Building**: Generates accessible, responsive UI components strictly adhering to `STYLE_GUIDE.md` design tokens. |
+| `/api` | `app-api` | **Backend Routes**: Creates standardized endpoints with strict Zod validation, auth guards, and `{ success, data, error }` envelopes. |
+| `/db` | `app-db` | **Database & ORM**: Designs relational schemas, indexes foreign keys, creates migrations (Prisma/Drizzle/Supabase), and writes seed scripts. |
+| `/ai` | `app-ai` | **AI & LLMs**: Integrates production AI (Vercel AI SDK/OpenAI/Gemini/Anthropic) with streaming, structured Zod outputs, and cost controls. |
+| `/security` | `app-security` | **Security Audit**: Scans for OWASP Top 10 flaws, hardcoded secrets, injection risks, auth leaks, and CVEs, logging to `SECURITY_AUDIT.md`. |
 
 ---
 
@@ -65,6 +75,7 @@ Control your AI assistant with crisp, standardized commands:
 │   │   ├── PRD.md              # Product Requirements Document (features, user stories, acceptance criteria)
 │   │   ├── ARCHITECTURE.md     # System architecture (frontend, backend, database, API, auth)
 │   │   ├── STYLE_GUIDE.md      # 🎨 Design System: CSS tokens, component standards, responsive breakpoints
+│   │   ├── SECURITY_AUDIT.md   # 🛡️ Security scorecard, OWASP Top 10 log & vulnerability register
 │   │   ├── PROJECT_STATUS.md   # Current status, feature matrix, roadmap & technical debt
 │   │   ├── CODE_REVIEW.md      # Quality scorecards: performance, security, a11y, SEO (A–F)
 │   │   ├── KNOWN_BUGS.md       # Root-cause bug registry and fixed issues
@@ -75,6 +86,11 @@ Control your AI assistant with crisp, standardized commands:
 │   └── skills/                 # ⚡ Autonomous agent tools & execution prompts
 │       ├── app-init/           # Scaffolding and Grill-Me interview logic
 │       ├── app-onboard/        # Codebase discovery and architecture mapping
+│       ├── app-ui/             # Component building with design tokens & a11y
+│       ├── app-api/            # Standardized API routes with Zod validation
+│       ├── app-db/             # Schema modeling, migrations, and seed scripts
+│       ├── app-ai/             # LLM streaming, structured output, and prompts
+│       ├── app-security/       # OWASP Top 10 and vulnerability scanning
 │       ├── app-review/         # Security, performance, a11y, and style audits
 │       ├── app-test/           # Automated browser verification
 │       ├── app-debug/          # Diagnostic workflows
@@ -93,11 +109,10 @@ This template is **framework-agnostic**. When initialized (`/init`), the Grill-M
 
 - **Frontend**: Next.js, Vite+React, SvelteKit, Astro, or vanilla HTML/CSS/JS
 - **Backend**: Next.js API routes, Express, Fastify, Hono, or serverless functions
-- **Database**: PostgreSQL, SQLite, MongoDB, Supabase, Firebase, or Prisma ORM
+- **Database**: PostgreSQL, SQLite, MongoDB, Supabase, Firebase, or Prisma/Drizzle ORM
+- **AI**: Vercel AI SDK, OpenAI, Anthropic Claude, Google Gemini
 - **Auth**: NextAuth, Clerk, Supabase Auth, custom JWT, or session-based
 - **Deployment**: Vercel, Netlify, Docker, Railway, Fly.io, or GitHub Pages
-
-The blueprint documents (`.agents/blueprint/`) adapt to your chosen stack, providing consistent architectural guidance regardless of framework.
 
 ---
 
@@ -106,7 +121,7 @@ The blueprint documents (`.agents/blueprint/`) adapt to your chosen stack, provi
 Every project initialized with this template inherits built-in quality gates:
 
 1. **Security**: Environment variables for secrets, input validation, CORS configuration, XSS/CSRF prevention, parameterized database queries.
-2. **Accessibility (WCAG 2.1)**: Semantic HTML, keyboard navigation, ARIA attributes, color contrast ratios, screen reader compatibility.
+2. **Accessibility (WCAG 2.1 AA)**: Semantic HTML, keyboard navigation, ARIA attributes, color contrast ratios, screen reader compatibility.
 3. **Performance (Core Web Vitals)**: Lazy loading, code splitting, image optimization, efficient caching, bundle size monitoring.
 4. **SEO**: Proper meta tags, structured data, semantic heading hierarchy, sitemap generation, OpenGraph social sharing.
 5. **Code Quality**: Consistent design tokens (no ad-hoc styles), ESLint/Prettier integration, TypeScript encouraged.
