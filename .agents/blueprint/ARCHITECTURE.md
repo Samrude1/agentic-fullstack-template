@@ -1,57 +1,73 @@
 # Technical Architecture (ARCHITECTURE.md)
 
-This document defines the technical structure, module responsibilities, data flow, and performance standards of the game engine. Every developer and AI agent must adhere to this architecture.
+This document defines the technical structure, module responsibilities, data flow, and quality standards of the application. Every developer and AI agent must adhere to this architecture.
 
 ---
 
-## 1. System Architecture & Modules
+## 1. System Architecture
 
 ```mermaid
 graph TD
-    A[index.html] --> B[src/main.js - Bootstrap]
-    B --> C[src/core/Engine.js - Game Loop & Scaling]
-    B --> D[src/core/Input.js - Keyboard, Mouse, Touch]
-    B --> E[src/core/Audio.js - Procedural Web Audio API]
-    C --> F[src/core/State.js - Scene Machine & Particles]
-    F --> G[src/scenes/ - Game States]
-    G --> H[MenuScene]
-    G --> I[GameScene]
-    G --> J[GameOverScene]
-    I --> K[src/entities/ - Player, Enemies, Projectiles]
-    I --> L[src/utils/ - Math, Collision, ObjectPool]
+    A[Client Browser] --> B[Frontend - Pages & Components]
+    B --> C[API Layer - Routes & Handlers]
+    C --> D[Service Layer - Business Logic]
+    D --> E[Data Layer - ORM & Database]
+    C --> F[Auth - Authentication & Authorization]
+    B --> G[State Management]
+    A --> H[Static Assets & CDN]
 ```
 
 ---
 
 ## 2. Directory Structure & Responsibilities
 
-| File / Directory | Responsibility |
+| Directory / File | Responsibility |
 | :--- | :--- |
-| `index.html` | Canvas element, HUD/UI overlays, and on-screen mobile touch controls |
-| `style.css` | Responsive layout, letterbox scaling, color tokens, and modal animations |
-| `src/main.js` | Bootstrap script, dependency wiring, and initial scene activation |
-| `src/core/Engine.js` | Deterministic 60 FPS loop, clamped delta-time, tab visibility pause/resume |
-| `src/core/Input.js` | Unified input abstraction (keyboard, mouse, virtual touch controls) |
-| `src/core/Audio.js` | 100% code-based procedural Web Audio API synthesizer |
-| `src/core/State.js` | Scene base class and object-pooled particle system |
-| `src/scenes/` | Discrete game scenes (`enter`, `exit`, `update`, `render`) |
-| `src/entities/` | Game objects, state, behavior, and rendering |
-| `src/utils/ObjectPool.js` | Generic object pool for zero-allocation GC optimization |
-| `src/utils/math.js` | Vector math helpers (`lerp`, `clamp`, `distanceSq`, `angleBetween`) |
-| `src/utils/Collision.js` | 2D collision tests (`circleVsCircle`, `rectVsRect`, `circleVsRect`) |
+| `src/app/` or `src/pages/` | Page routes and layouts (framework-dependent) |
+| `src/components/` | Reusable UI components (buttons, cards, modals, forms, nav) |
+| `src/components/ui/` | Primitive design system components |
+| `src/lib/` | Shared utilities, helpers, and configuration |
+| `src/services/` | Business logic and external API integrations |
+| `src/hooks/` | Custom React/framework hooks |
+| `src/api/` or `src/server/` | Backend API routes, handlers, and middleware |
+| `src/db/` | Database schema, migrations, and seed files |
+| `src/types/` | TypeScript type definitions and interfaces |
+| `src/styles/` | Global CSS, design tokens, and theme configuration |
+| `public/` | Static assets (images, fonts, favicon) |
+| `tests/` | Unit, integration, and E2E test files |
 
 ---
 
-## 3. Game Loop & Rendering Rules
+## 3. Frontend Architecture
+1. **Component Hierarchy**:
+   - Layout components (Header, Sidebar, Footer) wrap page content.
+   - Page components compose feature-specific components.
+   - UI primitives (`Button`, `Input`, `Card`, `Modal`) follow `STYLE_GUIDE.md`.
+2. **State Management**:
+   - Server state via data fetching (SWR, TanStack Query, or framework built-in).
+   - Client state via React Context, Zustand, or framework stores.
+3. **Styling**:
+   - CSS custom properties (`:root` tokens) defined in `STYLE_GUIDE.md`.
+   - No inline styles or ad-hoc hex colors.
 
-1. **Delta-Time (`dt`)**:
-   - All motion and timers are scaled by `dt` (in seconds).
-   - `Math.min(dt, 0.1)` guards against tunneling and spiral-of-death lag spikes.
-2. **Virtual Resolution (Canvas Scaling)**:
-   - Fixed internal coordinate space (default: 960x540 widescreen).
-   - Canvas scales responsively while preserving aspect ratio (letterbox/pillarbox).
-   - Mouse and touch screen coordinates must always be converted to virtual canvas coordinates via `engine.screenToVirtual(x, y)`.
-3. **Object Pooling**:
-   - Bullets, particles, and enemies are recycled in object pools to eliminate Garbage Collection stutter.
-4. **Audio Autoplay**:
-   - `AudioContext` is initialized or resumed on the first user interaction (`audio.init()`).
+---
+
+## 4. Backend & API Architecture
+1. **API Design**:
+   - RESTful conventions with proper HTTP methods and status codes.
+   - Input validation on all endpoints (Zod, Yup, or manual).
+   - Consistent error response format: `{ error: string, code: number }`.
+2. **Authentication**:
+   - Session or token-based auth with secure cookie/header handling.
+   - Protected routes enforce auth middleware.
+3. **Database**:
+   - ORM-managed schema with migrations.
+   - Parameterized queries only (no string concatenation).
+
+---
+
+## 5. Quality & Performance Rules
+1. **Security**: Secrets in `.env` only, CORS configured, CSRF protection, XSS-safe rendering.
+2. **Performance**: Lazy loading for heavy components, image optimization, code splitting.
+3. **Accessibility**: Semantic HTML, ARIA where needed, keyboard navigable, color contrast compliant.
+4. **SEO**: Proper `<title>`, `<meta>`, heading hierarchy, OpenGraph tags, structured data.

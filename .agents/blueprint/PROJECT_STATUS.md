@@ -5,14 +5,13 @@ This document tracks verified implementation progress, active feature matrix, te
 ---
 
 ## 1. Executive Status
-- **Current State**: Template Ready & Optimized (Skill-First Solo Dev Kit)
-- **Estimated Completion**: 100% (Core Scaffold & Toolkit complete)
-- **Last Updated**: 2026-09-02
+- **Current State**: Template Ready (Skill-First Solo Dev Kit)
+- **Estimated Completion**: 100% (Core Toolkit complete)
+- **Last Updated**: [Date]
 - **Key Focus**:
   - Skill-First architecture established.
   - Skills active: `/init`, `/onboard`, `/test`, `/debug`, `/review`, `/save`, `/resume`, `/build`.
-  - Utility library (`ObjectPool.js`, `math.js`, `Collision.js`) integrated.
-  - Ready for new game initialization (`/init`) or legacy onboarding (`/onboard`).
+  - Ready for new project initialization (`/init`) or legacy onboarding (`/onboard`).
 
 ---
 
@@ -20,35 +19,35 @@ This document tracks verified implementation progress, active feature matrix, te
 
 | Domain | Feature | Status | Notes |
 | :--- | :--- | :--- | :--- |
-| **Core** | Game Loop & Delta-Time | 🟩 Complete | 60 FPS `requestAnimationFrame`, clamped `dt` |
-| **Core** | Tab Visibility Pause/Resume | 🟩 Complete | `visibilitychange` guards against lag spikes |
-| **Core** | Canvas Scaling & Aspect Ratio | 🟩 Complete | Aspect-ratio letterbox & virtual coordinates |
-| **Core** | Object Pooling | 🟩 Complete | `ObjectPool.js` for zero GC pressure |
-| **Core** | Game Math & Physics Helpers | 🟩 Complete | `math.js` (`lerp`, `clamp`, `distanceSq`, `normalize`) |
-| **Core** | Collision Detection | 🟩 Complete | `Collision.js` (`circleVsCircle`, `rectVsRect`, `circleVsRect`) |
-| **Inputs** | Keyboard & Mouse | 🟩 Complete | Unified `Input.js` |
-| **Inputs** | Mobile Touch Controls | 🟩 Complete | On-screen virtual D-pad and action buttons |
-| **Graphics & UI** | HUD & Modal Overlays | 🟩 Complete | Start screen, popIn animations, `:root` tokens |
-| **Graphics & UI** | Particle FX & Screen Shake | 🟩 Complete | `ParticleEmitter` powered by `ObjectPool` |
-| **Audio** | Web Audio Sound Effects | 🟩 Complete | Procedural synthesis with precise Web Audio clock |
-| **Testing** | Automated Browser Testing | 🟩 Complete | `/test` (`game-test` skill) |
-| **Diagnostics** | Root Cause Diagnostics | 🟩 Complete | `/debug` (`game-debug` skill & `KNOWN_BUGS.md`) |
-| **Packaging** | PWA & Distribution | 🟩 Complete | `/build` (`game-deploy` skill) |
-| **Memory** | Long-Term Session Memory | 🟩 Complete | `/save` & `/resume` (`game-memory` skill) |
+| **Frontend** | Pages & Routing | ⬜ Planned | Scaffolded via `/init` |
+| **Frontend** | Component Library | ⬜ Planned | Built per `STYLE_GUIDE.md` |
+| **Frontend** | Responsive Layout | ⬜ Planned | Mobile-first breakpoints |
+| **Frontend** | Dark/Light Theme | ⬜ Planned | CSS variable swap |
+| **Backend** | API Routes | ⬜ Planned | REST or GraphQL per PRD |
+| **Backend** | Input Validation | ⬜ Planned | Zod/Yup on all endpoints |
+| **Backend** | Error Handling | ⬜ Planned | Consistent error format |
+| **Database** | Schema & Migrations | ⬜ Planned | ORM-managed |
+| **Database** | Seed Data | ⬜ Planned | Development fixtures |
+| **Auth** | Login / Register | ⬜ Planned | Auth provider per PRD |
+| **Auth** | Protected Routes | ⬜ Planned | Middleware enforcement |
+| **Quality** | Accessibility (a11y) | ⬜ Planned | WCAG 2.1 AA |
+| **Quality** | SEO Metadata | ⬜ Planned | Title, meta, OG tags |
+| **Quality** | Performance | ⬜ Planned | Core Web Vitals |
+| **Testing** | Unit Tests | ⬜ Planned | Business logic |
+| **Testing** | E2E Tests | ⬜ Planned | Critical user flows |
+| **Deployment** | Production Build | ⬜ Planned | Vercel/Netlify/Docker |
+| **Memory** | Session Memory | 🟩 Complete | `/save` & `/resume` skills |
 
 *Status Legend: 🟩 Complete | 🟨 In Progress | 🟥 Defect / Needs Fix | ⬜ Planned*
 
 ---
 
 ## 3. Technical Debt & Resolved Issues
-- [x] Fixed `ParticleEmitter`: Replaced runtime `new` allocations and `splice()` with `ObjectPool`.
-- [x] Fixed tab-switch lag spikes: Implemented `visibilitychange` in `Engine.js`.
-- [x] Fixed audio timing: Replaced `setTimeout()` with `AudioContext.currentTime` scheduling.
-- [x] Synchronized Style Guide: `GameScene.js` dynamically queries `:root` variables via `getComputedStyle`.
+*No issues tracked yet. Run `/review` to generate the first audit.*
 
 ---
 
 ## 4. Solo Dev Roadmap
-1. **To start a new game**: Type `/init` to launch the Grill-Me interview.
+1. **To start a new project**: Type `/init` to launch the Grill-Me interview.
 2. **To take over existing code**: Type `/onboard`.
-3. **To verify gameplay**: Type `/test`.
+3. **To verify the app**: Type `/test`.

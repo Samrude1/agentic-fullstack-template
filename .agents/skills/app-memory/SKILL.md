@@ -1,12 +1,12 @@
 ---
-name: game-memory
+name: app-memory
 description: >-
   Manages persistent project memory and cross-session handoffs.
   Use this skill whenever the user saves state before ending a session (/save, /checkpoint),
   or starts a new session and requests a debrief (/resume, /start-session).
 ---
 
-# Game Long-Term Memory & Session Handoff Skill
+# App Long-Term Memory & Session Handoff Skill
 
 This skill solves LLM context window degradation and token consumption. It allows the developer to reset or switch chat sessions cleanly without losing project momentum or architectural continuity.
 
@@ -62,8 +62,8 @@ Deliver a crisp 3–4 sentence status briefing:
 👋 **Welcome back! Project memory and status loaded.**
 
 - **Previous Achievements**: [What was completed last session]
-- **Current Health**: [Engine/game state, stability]
-- **Recommended Kick-off**: 👉 [Specific task, e.g., Enemy wave spawning in GameScene.js]
+- **Current Health**: [App state, stability, test results]
+- **Recommended Kick-off**: 👉 [Specific task, e.g., Build the dashboard page with API integration]
 
 Ready to proceed with this task, or would you like to focus on something else today?
 ```
