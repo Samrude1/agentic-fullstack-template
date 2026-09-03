@@ -92,3 +92,14 @@ This skill guides the agent in conducting thorough, rigorous security audits for
    Detailed remediation report saved to: `.agents/blueprint/SECURITY_AUDIT.md`.
    ```
 4. **Immediate Remediation**: Offer to fix critical findings immediately.
+
+---
+
+## Error Handling & Fallbacks
+
+If automated security scanning tools or package audits fail:
+1. **`npm audit` Network Failure**: Retry with `--registry=https://registry.npmjs.org/` or inspect network/proxy settings.
+2. **False Positives in Regex Secret Scan**: Whitelist placeholder test keys (e.g. `sk-test-12345`) by documenting them explicitly in `SECURITY_AUDIT.md`.
+3. **Unfixable Upstream CVEs**: If a package has no fixed release, evaluate replacing the package or adding overrides/resolutions in `package.json`.
+4. **Escalate**: If active hardcoded secrets were committed to Git history, guide developer immediately on credential revocation and history rewriting (`git filter-repo` or BFG).
+

@@ -119,3 +119,14 @@ export function Button({
 - **States Supported**: default, hover, active, loading, disabled
 - **Responsive**: Tested across mobile (375px) and desktop breakpoints
 ```
+
+---
+
+## Error Handling & Fallbacks
+
+If UI styling or component rendering fails:
+1. **Hydration Mismatch**: In SSR frameworks (Next.js), verify no browser-only objects (`window`, `localStorage`, `Date.now()`) are evaluated during the initial server render pass.
+2. **CSS Specificity Collision**: Avoid `!important`. Refactor class selectors or use CSS Modules / scoped CSS to prevent global leakage.
+3. **Contrast Failure**: If WCAG 2.1 AA check fails, adjust background surface or text lightness tokens in `STYLE_GUIDE.md` rather than hardcoding ad-hoc hex values.
+4. **Escalate**: If complex layout calculations cause reflow bugs, provide a simplified fallback layout and consult the developer.
+

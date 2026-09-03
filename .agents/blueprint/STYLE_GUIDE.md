@@ -57,6 +57,54 @@ All colors and visual effects are defined in `:root`:
   --transition-normal: 250ms ease;
   --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Light Mode Overrides (Automatic via OS preference or manual data-theme toggle) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-surface: rgba(255, 255, 255, 0.95);
+    --overlay-bg: rgba(0, 0, 0, 0.4);
+    --border-color: rgba(15, 23, 42, 0.12);
+
+    --primary: #0284c7;
+    --primary-hover: #0369a1;
+    --secondary: #475569;
+    --secondary-hover: #334155;
+
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-inverse: #f8fafc;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 4px 15px rgba(2, 132, 199, 0.25);
+  }
+}
+
+/* Explicit class or attribute toggles */
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-surface: rgba(255, 255, 255, 0.95);
+  --overlay-bg: rgba(0, 0, 0, 0.4);
+  --border-color: rgba(15, 23, 42, 0.12);
+
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --secondary: #475569;
+  --secondary-hover: #334155;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-inverse: #f8fafc;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 4px 15px rgba(2, 132, 199, 0.25);
+}
 ```
 
 ---
@@ -197,5 +245,7 @@ Delete, remove, destructive actions.
 1. **Never Hardcode Hex Values in CSS**: Always reference `var(--primary)`, `var(--bg-primary)`, etc.
 2. **No Inline Styles**: Use CSS classes or CSS modules. No `style="..."` or `element.style.x = ...`.
 3. **Accessible Components**: All interactive elements must have visible focus states and proper ARIA attributes.
-4. **Dark/Light Mode**: Use CSS variables so theming is a single `:root` swap.
+4. **Dark/Light Mode**: Use CSS variables exclusively so theming is a seamless `:root` swap without touching component markup.
 5. **Consistent Spacing**: Use the spacing scale (`--space-*`) for all margins and paddings.
+6. **Theme-Aware Verification**: Every component must look polished in both light and dark modes. Test contrast and borders across both themes before marking complete.
+

@@ -96,3 +96,25 @@ These rules govern all application development and code generation in this repos
   - CSS classes: kebab-case (`.btn-primary`, `.card-header`)
 - **No Magic Strings or Numbers**: Extract to named constants or environment variables.
 - **Documentation**: JSDoc/TSDoc for public APIs, complex business logic, and non-obvious code paths.
+
+---
+
+## 9. Testing Standards
+- **Unit Tests**: Critical business logic, Zod schemas, data transformers, and utility functions must have unit tests.
+- **API Tests**: All API endpoints must have integration tests covering success, validation error (400), and auth failure (401/403) cases.
+- **Coverage**: Maintain minimum 70% statement coverage on service, utility, and schema modules.
+- **Test Naming**: Use descriptive test names: `it('should return 401 when auth token is missing')`.
+- **Test Isolation**: Co-locate unit tests (`*.test.ts`) with source code, or place integration suites in `tests/`. Reset state/mocks after each test.
+
+---
+
+## 10. Git & Version Control
+- **Commit Convention**: Use Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`, `perf:`).
+- **Branch Strategy**:
+  - `main`: Production-stable branch.
+  - `dev`: Active integration/staging branch.
+  - `feat/<name>` / `fix/<name>`: Feature and bugfix branches.
+- **Versioning**: Follow Semantic Versioning (`MAJOR.MINOR.PATCH`).
+- **Releases & Tags**: Tag production releases with Git tags (`git tag -a v1.0.0 -m "Release v1.0.0"`).
+- **Changelog**: Maintain `CHANGELOG.md` with categorized entries (`Added`, `Changed`, `Fixed`, `Security`).
+

@@ -67,3 +67,13 @@ Deliver a crisp 3–4 sentence status briefing:
 
 Ready to proceed with this task, or would you like to focus on something else today?
 ```
+
+---
+
+## Error Handling & Fallbacks
+
+If session state files are missing or corrupt:
+1. **Missing `SESSION_STATE.md`**: Fallback to reading `.agents/blueprint/PROJECT_STATUS.md` and `git log -n 5` to reconstruct the current session baseline.
+2. **Missing `DEV_LOG.md`**: Recreate the file with the current date, active task, and note the recreation.
+3. **Escalate**: If branch or working directory state has unstaged changes from another session, prompt the developer before overriding.
+

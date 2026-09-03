@@ -36,6 +36,9 @@ The agent must activate the corresponding skill (`.agents/skills/<skill-name>/SK
 | `/onboard`, `/audit` | `app-onboard` | Audit and reverse-engineer existing codebase, build blueprint |
 | `/review`, `/optimize` | `app-review` | Code quality assurance: performance, a11y, SEO, architecture audit |
 | `/test` | `app-test` | Automated browser testing: page load, navigation, forms, console errors, responsive |
+| `/test-unit`, `/unit-test` | `app-test-unit` | Automated unit & integration testing: Vitest/Jest, API tests, coverage reporting |
+| `/ci`, `/pipeline` | `app-ci` | CI/CD pipeline setup: GitHub Actions, automated checks, PR gates, Dependabot |
+| `/docs`, `/doc` | `app-docs` | Studio documentation suite: Standard README, CHANGELOG, RUNBOOK, API docs, ADRs |
 | `/debug`, `/fix` | `app-debug` | Systematic diagnostics: root cause analysis, fix proposal, `KNOWN_BUGS.md` logging |
 | `/save`, `/checkpoint` | `app-memory` | Session end: summarize state, define next task, save handoff context |
 | `/build`, `/deploy` | `app-deploy` | Production build, deployment packaging (Vercel, Netlify, Docker, GitHub Pages) |
@@ -47,6 +50,8 @@ The agent must activate the corresponding skill (`.agents/skills/<skill-name>/SK
 | `/api`, `/endpoint` | `app-api` | Standardized API routes: Zod input validation, uniform error envelopes, auth checks |
 | `/db`, `/database` | `app-db` | Database engineering: schemas, relations, indexes, migrations, and seed data |
 | `/ai`, `/llm` | `app-ai` | Production AI integration: streaming, structured Zod outputs, prompt management |
+| `/email` | `app-email` | Transactional email systems: React Email templates, Resend/SendGrid, SPF/DKIM |
+| `/perf`, `/optimize-perf` | `app-perf` | Performance & Core Web Vitals optimization: bundle analysis, Lighthouse, caching |
 | `/security`, `/sec-audit` | `app-security` | Comprehensive OWASP Top 10 security audit, CVE scan, and `SECURITY_AUDIT.md` logging |
 
 ---

@@ -96,3 +96,14 @@ const result = await generateObject({
 - **Structured Schema**: [Zod Schema Name or Freeform]
 - **Cost Safeguards**: maxTokens set, timeouts configured, rate limit verified
 ```
+
+---
+
+## Error Handling & Fallbacks
+
+If AI / LLM requests fail during generation or streaming:
+1. **Model Rate Limits (429)**: Implement automated retry with exponential backoff and jitter, or fallback to an alternative model tier.
+2. **Schema Parsing Rejections**: When structured output does not match Zod schema, pass the schema error back to the model for one correction pass, or fallback to safe defaults.
+3. **Context Length Exceeded**: Implement token truncation or message pruning (e.g. keep system prompt + last N messages).
+4. **Escalate**: If API keys lack credits or quota is exhausted, warn developer with provider link to check billing dashboard.
+

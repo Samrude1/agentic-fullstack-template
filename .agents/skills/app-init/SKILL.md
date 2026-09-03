@@ -3,7 +3,7 @@ name: app-init
 description: >-
   Initializes a new fullstack web application project. Use this skill whenever the user
   requests to start a new project, runs /init, or asks to scaffold an application.
-  Includes an interactive 4-question Grill-Me interview and complete project scaffolding.
+  Includes an interactive 6-question Grill-Me interview and complete project scaffolding.
 ---
 
 # App Init Skill
@@ -23,7 +23,7 @@ Inspect if a project description or requirements already exist in the project or
 ---
 
 ### Step 2: Grill-Me Interview (If Needed)
-Do not guess requirements. Enter interactive interview mode and present 4 focused questions:
+Do not guess requirements. Enter interactive interview mode and present 6 focused questions:
 
 1. **App Type & Core Purpose**:
    - *What kind of application is this? (e.g., SaaS dashboard, e-commerce store, portfolio site, blog/CMS, internal tool, social platform?)*
@@ -33,6 +33,10 @@ Do not guess requirements. Enter interactive interview mode and present 4 focuse
    - *What data does the app manage and how do users authenticate? (e.g., email/password, OAuth/Google, magic links, no auth needed?) API style: REST, GraphQL, tRPC?*
 4. **Design Style & Target**:
    - *What is the visual style? (e.g., Modern minimal, glassmorphism, dark mode, corporate clean, playful/colorful?) Desktop-first or mobile-first?*
+5. **Deployment & Hosting Strategy**:
+   - *Where will this be deployed? (e.g., Vercel, Netlify, Docker container, Railway, Fly.io?) Do you want an automated GitHub Actions CI/CD pipeline right away?*
+6. **Integrations & Third-Party Services**:
+   - *Do you anticipate external integrations? (e.g., Stripe payments, Resend/SendGrid emails, AI/LLM models, S3/Cloudflare file storage, analytics)?*
 
 *Wait for user response before generating code.*
 
@@ -69,3 +73,13 @@ After scaffolding:
 1. Run `npm run dev` and ensure the app starts without console errors.
 2. Verify the landing page renders correctly in the browser.
 3. Give the developer a concise kick-off summary and propose the first feature sprint.
+
+---
+
+## Error Handling & Fallbacks
+
+If any step in this scaffolding workflow fails:
+1. **Directory Collision**: If `create-next-app` or `create-vite` refuses to write to a non-empty directory, scaffold into a temporary folder and move code files over, preserving `.agents/`.
+2. **Dependency Installation Error**: Run `npm cache clean --force` and retry `npm install`.
+3. **Template Drift**: Ensure newly generated project files respect the CSS tokens in `STYLE_GUIDE.md` rather than framework boilerplate styles.
+4. **Escalate**: If package manager issues persist, notify developer with the exact installation logs.

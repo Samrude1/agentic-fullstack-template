@@ -88,3 +88,13 @@ Full blueprint saved to: `.agents/blueprint/`.
 ```
 
 Conclude by asking developer confirmation: *"Would you like me to start with step 1?"*
+
+---
+
+## Error Handling & Fallbacks
+
+If any step in the onboarding audit fails:
+1. **Unrecognized Framework or Monorepo**: If project layout deviates from standard conventions, search for root build files (`pnpm-workspace.yaml`, `lerna.json`, `turbo.json`) and audit package by package.
+2. **Missing Dependencies / Incomplete Clone**: Note uninstalled packages or broken imports in `PROJECT_STATUS.md` as immediate technical debt.
+3. **Escalate**: If critical architectural components cannot be inferred, ask the developer for clarification before making assumptions in the blueprint.
+

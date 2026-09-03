@@ -74,3 +74,14 @@ Present a concise summary:
 ```
 
 If errors are detected, propose immediate resolution or transition to `/debug`.
+
+---
+
+## Error Handling & Fallbacks
+
+If automated browser testing cannot initialize or run:
+1. **Dev Server Not Running / Port Mismatch**: Verify active port (`3000`, `5173`, etc.) before initializing browser navigation.
+2. **Browser Subagent Navigation Failure**: If the subagent fails to connect, inspect local firewall or dev server logs.
+3. **Flaky / Dynamic Element Selectors**: Prefer robust accessibility selectors (`role`, `aria-label`, visible text) over fragile CSS path selectors.
+4. **Escalate**: If persistent uncaught exceptions crash the browser page, capture the console traceback and immediately invoke `/debug`.
+

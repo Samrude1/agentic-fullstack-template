@@ -71,3 +71,14 @@ Document the resolution in `.agents/blueprint/KNOWN_BUGS.md`:
 - Date & Symptom
 - Root Cause
 - Resolution & Modified Files
+
+---
+
+## Error Handling & Fallbacks
+
+If diagnostic investigation fails to identify root cause:
+1. **Reproduce in Isolation**: Create a minimal reproduction script or test case in `tests/` or scratch directory.
+2. **Binary Search (Git Bisect)**: If the bug is a recent regression, identify the last known good commit using `git bisect`.
+3. **Avoid Guesswork Fixes**: Never apply speculative trial-and-error patches that compromise code cleanliness.
+4. **Escalate**: If the bug stems from an upstream package defect or environment-level driver, provide the issue tracking link and document temporary workarounds in `KNOWN_BUGS.md`.
+

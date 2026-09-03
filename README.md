@@ -43,13 +43,16 @@ graph TD
 
 Control your AI assistant with crisp, standardized commands:
 
-### 🔄 Lifecycle & Memory Commands
+### 🔄 Lifecycle & Quality Commands
 | Command | Skill | Description |
 | :--- | :--- | :--- |
 | `/resume` | `app-memory` | **Start of Day**: Restores memory from `SESSION_STATE.md` and loads only 2–4 key files to minimize token usage. |
-| `/init` | `app-init` | **New Project**: Triggers a 4-question *Grill-Me* design interview, writes the blueprint, and scaffolds a working application. |
+| `/init` | `app-init` | **New Project**: Triggers a 6-question *Grill-Me* design interview, writes the blueprint, and scaffolds a working application. |
 | `/onboard` | `app-onboard` | **Legacy Audit**: Dissects existing codebases, audits architecture/dependencies, and generates a blueprint structure. |
 | `/test` | `app-test` | **Automated Testing**: Runs the app in a browser subagent, checking page load, navigation, forms, console errors, and responsive layout. |
+| `/test-unit` | `app-test-unit` | **Unit & API Testing**: Sets up and runs Vitest/Jest, testing validation schemas, services, API endpoints, and coverage. |
+| `/ci` | `app-ci` | **CI/CD Automation**: Generates GitHub Actions pipelines, automated typecheck/lint/test gates, and Dependabot config. |
+| `/docs` | `app-docs` | **Studio Documentation**: Generates full studio suite (`/docs --all`) or targeted: Standard README, CHANGELOG, RUNBOOK, API docs, ADRs. |
 | `/debug` | `app-debug` | **Diagnostics**: Locates root causes (hydration errors, API failures, auth issues, CORS, build errors) and updates `KNOWN_BUGS.md`. |
 | `/review` | `app-review` | **Quality Assurance**: Audits for code quality, accessibility compliance, performance bottlenecks, and style drift. |
 | `/save` | `app-memory` | **End of Day**: Compiles session achievements, logs next steps in `SESSION_STATE.md` and commits to `DEV_LOG.md`. |
@@ -62,6 +65,8 @@ Control your AI assistant with crisp, standardized commands:
 | `/api` | `app-api` | **Backend Routes**: Creates standardized endpoints with strict Zod validation, auth guards, and `{ success, data, error }` envelopes. |
 | `/db` | `app-db` | **Database & ORM**: Designs relational schemas, indexes foreign keys, creates migrations (Prisma/Drizzle/Supabase), and writes seed scripts. |
 | `/ai` | `app-ai` | **AI & LLMs**: Integrates production AI (Vercel AI SDK/OpenAI/Gemini/Anthropic) with streaming, structured Zod outputs, and cost controls. |
+| `/email` | `app-email` | **Transactional Email**: Integrates React Email templates, provider clients (Resend/SendGrid), and deliverability (SPF/DKIM). |
+| `/perf` | `app-perf` | **Performance & Vitals**: Audits and optimizes Core Web Vitals (LCP, INP, CLS), bundle size, code splitting, and caching. |
 | `/security` | `app-security` | **Security Audit**: Scans for OWASP Top 10 flaws, hardcoded secrets, injection risks, auth leaks, and CVEs, logging to `SECURITY_AUDIT.md`. |
 
 ---
@@ -90,9 +95,14 @@ Control your AI assistant with crisp, standardized commands:
 │       ├── app-api/            # Standardized API routes with Zod validation
 │       ├── app-db/             # Schema modeling, migrations, and seed scripts
 │       ├── app-ai/             # LLM streaming, structured output, and prompts
+│       ├── app-email/          # Transactional email and React Email templates
+│       ├── app-perf/           # Core Web Vitals, bundle analysis, and caching
 │       ├── app-security/       # OWASP Top 10 and vulnerability scanning
 │       ├── app-review/         # Security, performance, a11y, and style audits
 │       ├── app-test/           # Automated browser verification
+│       ├── app-test-unit/      # Automated unit, integration, and API testing
+│       ├── app-ci/             # GitHub Actions CI/CD and automated pipeline
+│       ├── app-docs/           # Studio documentation suite (Standard README, CHANGELOG, RUNBOOK, API, ADRs)
 │       ├── app-debug/          # Diagnostic workflows
 │       ├── app-memory/         # Token-efficient save/resume protocol
 │       └── app-deploy/         # Deployment & distribution packaging

@@ -66,6 +66,28 @@ This skill guides the agent in preparing and deploying a fullstack web applicati
 
 ---
 
+### Step 2.5: Production Monitoring & Observability Setup
+Ensure production instrumentation is established prior to or immediately following initial deployment:
+
+1. **Error Tracking & Crash Reporting (Sentry)**:
+   - Next.js: `npx @sentry/wizard@latest -i nextjs`
+   - Express / Node: `npm install @sentry/node`
+   - Configure DSN via `SENTRY_DSN` environment variable.
+   - Instrument both client error boundaries and server API unhandled rejections.
+2. **Health Check Endpoint**:
+   - Create `GET /api/health` returning JSON:
+     ```json
+     { "status": "ok", "timestamp": "2026-09-03T18:00:00Z", "version": "1.0.0" }
+     ```
+   - Validate database connectivity if a database is used (e.g. `SELECT 1`).
+3. **Structured Server Logging**:
+   - Prefer structured JSON logger (`pino`) over raw `console.log` for backend services.
+   - Never log passwords, auth tokens, secrets, or sensitive PII.
+4. **Uptime & Real-User Monitoring**:
+   - Set up free monitoring ping (e.g. UptimeRobot, Better Uptime) targeting `/api/health`.
+
+---
+
 ### Step 3: Post-Deployment Verification
 1. Visit the production URL and verify:
    - Pages load correctly without console errors.
@@ -86,9 +108,20 @@ Deliver a concise summary with deployment details, production URL, and any post-
 - **URL**: [Production URL]
 - **Build Status**: ✅ Clean build (0 errors, 0 warnings)
 - **Lighthouse Score**: Performance [X] / A11y [X] / SEO [X] / Best Practices [X]
+- **Monitoring**: Sentry [Configured / Pending], Health Check [`/api/health` active]
 
 ### Post-Launch Recommendations
-- [Set up error monitoring (Sentry, LogRocket)]
-- [Configure custom domain and SSL]
-- [Set up CI/CD pipeline for automatic deployments]
+- [Configure custom domain and SSL certificate]
+- [Verify uptime monitoring ping on /api/health]
+- [Set up CI/CD pipeline for automatic branch deployments via /ci]
 ```
+
+---
+
+## Error Handling & Fallbacks
+
+If any step in this deployment workflow fails:
+1. **Build Step Errors**: Run `npx tsc --noEmit` locally to catch type inconsistencies and verify `package.json` build scripts.
+2. **Missing Environment Variables**: Compare production platform dashboard variables with `.env.example`.
+3. **Container Failures (Docker)**: Test the container locally (`docker run --rm -p 3000:3000 app`) before pushing to remote registries.
+4. **Escalate**: If deployment fails due to platform quota or DNS propagation delays, clearly present the error log and configuration check to the developer.

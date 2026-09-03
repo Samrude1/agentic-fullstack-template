@@ -74,3 +74,13 @@ This skill guides the agent in conducting an in-depth code quality, architecture
 1. Update `.agents/blueprint/CODE_REVIEW.md` with grades (A–F), critical findings, and before/after refactoring snippets.
 2. Update `.agents/blueprint/PROJECT_STATUS.md` technical debt section.
 3. Present an Executive Summary to the developer with actionable proposals.
+
+---
+
+## Error Handling & Fallbacks
+
+If code review diagnostics or linters encounter errors:
+1. **ESLint / TypeScript Config Incompatibility**: Run `npx eslint --debug` or inspect `tsconfig.json` compiler options.
+2. **Review Ambiguity**: If code quality tradeoffs exist (e.g. bundle size vs developer ergonomics), document pros and cons explicitly in `CODE_REVIEW.md` rather than dictating single choices.
+3. **Escalate**: When critical performance or accessibility debt is identified, flag it prominently in the executive debrief with an immediate offer to execute the fix.
+

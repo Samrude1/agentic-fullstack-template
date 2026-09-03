@@ -112,3 +112,14 @@ If validation fails, return `HTTP 400 Bad Request` with structured error details
 - **Response Format**: Standard Envelope (`{ success, data, error }`)
 - **Status Codes**: 200 OK, 400 Bad Request, 401 Unauthorized, 500 Internal Error
 ```
+
+---
+
+## Error Handling & Fallbacks
+
+If API development or endpoint execution encounters defects:
+1. **Zod Parsing Failures**: Always inspect `.error.flatten()` to ensure specific field errors are returned with human-readable hints rather than raw schema dumps.
+2. **CORS Rejections**: Verify frontend port and protocol (`http://localhost:3000` vs `http://localhost:5173`) are explicitly listed in CORS configuration.
+3. **Database Connection Drops**: Implement database connection retry logic with exponential backoff for serverless cold starts.
+4. **Escalate**: If 500 Internal Server Errors persist without clear tracebacks, activate `/debug` or review server stdout logs.
+

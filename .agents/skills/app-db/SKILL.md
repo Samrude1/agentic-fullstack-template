@@ -73,3 +73,14 @@ Provide a clean summary:
 
 Next recommended step: Generate API routes with `/api [entity]`.
 ```
+
+---
+
+## Error Handling & Fallbacks
+
+If database migrations or schema synchronization fail:
+1. **Migration Drift / Lock Conflict**: Never use `--force` in production. For local development drift, inspect pending migrations, create a backup, or run reset if safe.
+2. **Missing Environment Variables**: Verify `DATABASE_URL` is configured in local `.env` and connection string includes necessary pooling/SSL flags (e.g. `?sslmode=require`).
+3. **Data Loss Warnings**: Stop immediately if an ORM reports destructive column drops. Confirm with developer before applying irreversible schema alterations.
+4. **Escalate**: If database constraints prevent seeds from executing, examine foreign key order and resolve cyclic dependencies.
+
