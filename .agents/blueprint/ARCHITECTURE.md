@@ -55,8 +55,8 @@ graph TD
 ## 4. Backend & API Architecture
 1. **API Design**:
    - RESTful conventions with proper HTTP methods and status codes.
-   - Input validation on all endpoints (Zod, Yup, or manual).
-   - Consistent error response format: `{ error: string, code: number }`.
+   - Input validation on all endpoints (Zod schemas preferred).
+   - Uniform response envelopes: `{ success: true, data }` and `{ success: false, error: { code, message, details? } }`.
 2. **Authentication**:
    - Session or token-based auth with secure cookie/header handling.
    - Protected routes enforce auth middleware.

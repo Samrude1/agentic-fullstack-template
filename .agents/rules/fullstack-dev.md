@@ -51,9 +51,10 @@ These rules govern all application development and code generation in this repos
 - **RESTful Conventions**:
   - `GET` for reads, `POST` for creates, `PUT`/`PATCH` for updates, `DELETE` for deletions.
   - Use proper HTTP status codes (200, 201, 400, 401, 403, 404, 500).
-- **Input Validation**: Validate and sanitize all user inputs on the server (Zod, Yup, or manual validation).
-- **Error Handling**:
-  - Consistent error response format: `{ error: "message", code: number }`.
+- **Input Validation**: Validate and sanitize all user inputs on the server using Zod schemas.
+- **Response Envelopes**:
+  - Success responses: `{ success: true, data: { ... }, meta?: { ... } }`.
+  - Error responses: `{ success: false, error: { code: string, message: string, details?: unknown[] } }`.
   - Never expose stack traces or internal errors to the client in production.
 - **Database Queries**: Always use parameterized queries or ORM methods. Never concatenate user input into SQL strings.
 

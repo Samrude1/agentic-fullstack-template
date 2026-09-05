@@ -6,6 +6,8 @@
 - **Target Users**: {{TARGET_USERS}}
 - **Tech Stack**: {{TECH_STACK}}
 - **Design Style**: {{DESIGN_STYLE}}
+- **Deployment Target**: {{DEPLOYMENT_TARGET}} (e.g., Vercel / Netlify / Docker / Railway / Fly.io)
+- **External Integrations**: {{EXTERNAL_INTEGRATIONS}} (e.g., Stripe, Resend/SendGrid, AI models, Cloudflare R2 / S3)
 
 ---
 

@@ -10,6 +10,8 @@ This document is the official Product Requirements specification for the project
 - **Target Users**: [Primary audience and use cases]
 - **Tech Stack**: [e.g., Next.js, PostgreSQL, Prisma, NextAuth]
 - **Design Style**: [e.g., Modern Minimal / Glassmorphism / Dark Mode / Corporate Clean]
+- **Deployment Target**: [e.g., Vercel / Netlify / Docker / Railway / Fly.io]
+- **External Integrations**: [e.g., Stripe, Resend/SendGrid, AI/LLM models, Cloudflare R2 / S3]
 
 ---
 
