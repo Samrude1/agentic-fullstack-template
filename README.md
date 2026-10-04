@@ -35,7 +35,7 @@ Most AI-generated codebases fail in production not because the model writes bad 
 .agents/
 ├── blueprint/          # 📌 Single Source of Truth (PRD, Architecture, Style, Status, Security)
 ├── rules/              # 🛡️ Non-Negotiable Fullstack Development Standards
-└── skills/             # ⚡ 17 Autonomous Agent Capabilities (Execution Workflows)
+└── skills/             # ⚡ 18 Autonomous Agent Capabilities (Execution Workflows)
 ```
 
 1. **Persistent Single Source of Truth (`.agents/blueprint/`)**:
@@ -43,7 +43,7 @@ Most AI-generated codebases fail in production not because the model writes bad 
 2. **Deterministic Governance (`.agents/rules/fullstack-dev.md`)**:
    Hard constraints that the agent cannot violate: mandatory Zod input validation, standardized `{ success, data, error }` response envelopes, parameterized queries, and mobile-first WCAG 2.1 AA accessibility.
 3. **Autonomous Execution Skills (`.agents/skills/`)**:
-   17 structured capabilities equipped with validation checklists, error recovery, and tool invocations.
+   18 structured capabilities equipped with validation checklists, error recovery, and tool invocations.
 
 ---
 
@@ -57,7 +57,7 @@ graph TD
     B --> C["🧪 3. Verification<br/>(/test browser & /test-unit API)"]
     C -- Defect Detected --> D["🐛 4. Diagnostics & Fix<br/>(/debug & log to KNOWN_BUGS)"]
     D --> B
-    C -- Clean Pass --> E["🔍 5. Quality & Security Gate<br/>(/review, /security, /perf)"]
+    C -- Clean Pass --> E["🔍 5. Quality & Security Gate<br/>(/review, /optimize, /security, /perf)"]
     E --> F["🌆 6. State Checkpoint<br/>(/save session state & dev diary)"]
     F --> G["🚀 7. Production Packaging<br/>(/build & /ci pipeline)"]
 ```
@@ -66,9 +66,9 @@ graph TD
 
 ## ⚡ Complete Agent Skills & Slash Command Matrix
 
-The system arms your AI coding assistant with **17 production skills** divided into lifecycle automation and specialized engineering domains:
+The system arms your AI coding assistant with **18 production skills** divided into lifecycle automation and specialized engineering domains:
 
-### 🔄 Lifecycle & Governance Skills (10)
+### 🔄 Lifecycle & Governance Skills (11)
 | Command | Skill | Domain / Scope | Technical Deliverables |
 | :--- | :--- | :--- | :--- |
 | `/resume` | `app-memory` | **Session Bootstrapping** | Restores state from `SESSION_STATE.md`; loads only 2–4 targeted files to preserve context window. |
@@ -80,7 +80,9 @@ The system arms your AI coding assistant with **17 production skills** divided i
 | `/docs` | `app-docs` | **Documentation Suite** | Generates Standard Readme, Keep a Changelog, REST API reference, and Production Operations Runbook. |
 | `/debug` | `app-debug` | **Systematic Diagnostics** | Root-cause analysis for hydration mismatches, auth errors, CORS, and logs to `KNOWN_BUGS.md`. |
 | `/review` | `app-review` | **Quality Assurance** | Audits code against WCAG 2.1 AA, Core Web Vitals, modularity, and style drift. |
+| `/optimize` | `app-optimize` | **Codebase Refactoring** | Untangles spaghetti code, breaks monolithic files into single-responsibility units, and optimizes architecture. |
 | `/save` | `app-memory` | **Session Handoff** | Analyzes session delta, updates `SESSION_STATE.md`, records dev log, and prepares fresh handoff. |
+| `/build` | `app-deploy` | **Production Packaging** | Validates production builds, generates containerization configs (Docker), and prepares deployment assets. |
 
 ### 🛠️ Specialized Engineering Domain Skills (7)
 | Command | Skill | Domain / Scope | Technical Deliverables |

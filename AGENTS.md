@@ -34,7 +34,8 @@ The agent must activate the corresponding skill (`.agents/skills/<skill-name>/SK
 | `/resume`, `/start-session` | `app-memory` | Session start: read state and deliver a concise 3-sentence kick-off debrief |
 | `/init` | `app-init` | Initialize new app: *Grill-Me* interview, PRD & blueprint creation, project scaffold |
 | `/onboard`, `/audit` | `app-onboard` | Audit and reverse-engineer existing codebase, build blueprint |
-| `/review`, `/optimize` | `app-review` | Code quality assurance: performance, a11y, SEO, architecture audit |
+| `/review` | `app-review` | Code quality assurance: performance, a11y, SEO, architecture audit |
+| `/optimize`, `/refactor` | `app-optimize` | Codebase refactoring: untangles spaghetti logic, decomposes monoliths, optimizes architecture |
 | `/test` | `app-test` | Automated browser testing: page load, navigation, forms, console errors, responsive |
 | `/test-unit`, `/unit-test` | `app-test-unit` | Automated unit & integration testing: Vitest/Jest, API tests, coverage reporting |
 | `/ci`, `/pipeline` | `app-ci` | CI/CD pipeline setup: GitHub Actions, automated checks, PR gates, Dependabot |
@@ -64,7 +65,7 @@ graph TD
     B --> C["🧪 Verification: /test"]
     C -- Bugs detected --> D["🐛 Diagnostics & Fix: /debug"]
     D --> B
-    C -- Clean pass --> E["🔍 Quality & Security Review: /review & /security"]
+    C -- Clean pass --> E["🔍 Quality, Optimization & Security: /review, /optimize & /security"]
     E --> F["🌆 End Session: /save"]
     F --> G["🚀 Production Deployment: /build"]
 ```

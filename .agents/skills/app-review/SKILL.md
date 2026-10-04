@@ -1,9 +1,8 @@
 ---
 name: app-review
 description: >-
-  Audits and optimizes fullstack web application code quality. Use this skill whenever
-  the user requests a code review, quality check, optimization, architecture audit,
-  or runs /review or /optimize.
+  Audits fullstack web application code quality, accessibility, SEO, and standards compliance. Use this skill whenever
+  the user requests a code review, quality check, architecture audit, or runs /review.
 ---
 
 # App Code Review & Quality Audit Skill
